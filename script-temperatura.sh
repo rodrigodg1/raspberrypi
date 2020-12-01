@@ -1,11 +1,10 @@
 #!/bin/bash
-# Script: my-pi-temp.sh
-# Purpose: Display the ARM CPU and GPU  temperature of Raspberry Pi 2/3 
-# Author: Vivek Gite <www.cyberciti.biz> under GPL v2.x+
-# -------------------------------------------------------
 
+
+#cria um arquivo txt para armazenar o histórico de temperatura 
 touch historico_temperatura.txt
 
+#limpa o arquivo a cada execução e na primeira linha, adiciona a data
 echo "$(date) @ $(hostname)" > historico_temperatura.txt	
 	
 
@@ -16,13 +15,15 @@ do
 	echo ""
 
 
-
+	#realiza a leitura
 	cpu=$(</sys/class/thermal/thermal_zone0/temp)
 	temp_atual=$((cpu/1000))
 
+	#grava no arquivo
 	echo $temp_atual >> historico_temperatura.txt
 	
 	
+	#mostra no terminal
 	echo "$(date) @ $(hostname)"
 	echo "-------------------------------------------"
 	echo "GPU => $(/opt/vc/bin/vcgencmd measure_temp)"
@@ -30,7 +31,7 @@ do
 
 
 
-
+	#mostra informações do disco /
 	echo ""
 	echo "Espaço no dir /"
 	df -h /
@@ -38,6 +39,9 @@ do
 
 
 	echo "Press [CTRL+C] to stop.."
+
+
+	#os eventos são atualizados a cada 5s
 	sleep 5
 
 
