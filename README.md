@@ -1,5 +1,5 @@
-# Para executar os scripts:
+## Para executar os scripts:
 
-> chmod +x scriptx
+> chmod +x scriptx.sh
 
-> ./scriptx
+> ./scriptx.sh
